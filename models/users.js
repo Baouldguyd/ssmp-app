@@ -19,7 +19,6 @@ const usersSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: "password is required"
     },
     phoneNumber: {
         type: String,
@@ -38,26 +37,21 @@ const usersSchema = new mongoose.Schema({
     startDate: {
         type: String,
         minlength: 3,
-        required: "Start date is required"
     },
     endDate: {
         type: String,
         minlength: 3,
-        required: "End date is required"
     },
     isVerified: {
         type: Boolean,
-        required: "isverified is required",
         default: false
     },
     isDeactivated: {
         type: Boolean,
-        required: "isdeactivated is required",
         default: false
     },
     isReactivated: {
         type: Boolean,
-        required: "isreactivated is required",
         default: false
     },
     dateCreated: {
