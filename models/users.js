@@ -27,12 +27,10 @@ const usersSchema = new mongoose.Schema({
     lga: {
         type: String,
         minlength: 3,
-        required: "Lga is required"
     },
     homeAddress: {
         type: String,
         minlength: 3,
-        required: " home address is required"
     },
     startDate: {
         type: String,

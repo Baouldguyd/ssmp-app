@@ -9,9 +9,7 @@ const enrollParticipants = async (req, res)=>{
         firstName: Joi.string().min(3).required(),
         lastName: Joi.string().min(3).required(),
         email: Joi.string().email().required(),
-        phoneNumber: Joi.string().required(),
-        lga: Joi.string().min(3).required(),
-        homeAddress: Joi.string().min(3).required()
+        phoneNumber: Joi.string().required()
     })
     const { error } = Schema.validate(req.body)
     if(error) return res.status(400).send({
@@ -21,7 +19,7 @@ const enrollParticipants = async (req, res)=>{
     })
 
 
-    const { firstName, lastName, email, phoneNumber, lga, homeAddress } = req.body
+    const { firstName, lastName, email, phoneNumber } = req.body
     try {
         let user = await Users.findOne({email});
 
@@ -36,8 +34,6 @@ const enrollParticipants = async (req, res)=>{
             lastName,
             email,
             phoneNumber,
-            lga,
-            homeAddress,
             isVerified: false,
             isDeactivated: false,
             isReactivated: false,
