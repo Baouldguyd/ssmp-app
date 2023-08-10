@@ -5,7 +5,7 @@ const sendVerificationMail = (user) => {
   const date = new Date()
 
   const mailOption = {
-    from: "SAIL Student Management Portal",
+    from: '"SAIL Student Management Portal" <oyeoyindamola@outlook.com> ',
     to: user.email,
     subject: "EMAIL VERIFICATION",
     html: `<html lang="en">

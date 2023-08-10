@@ -19,7 +19,7 @@ const enrollParticipants = async (req, res)=>{
         data: null
     })
 
-
+    
     const { firstName, lastName, email, phoneNumber } = req.body
     try {
         let user = await Users.findOne({email});
