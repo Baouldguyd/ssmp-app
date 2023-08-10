@@ -50,8 +50,11 @@ const sendVerificationMail = (user) => {
               <tr>
                 <td style="background-color: #ffffff">
                   <main>
-                    Dear <b>${user.firstName?.toUpperCase()}</b>! Welcome to SAIL. We are pleased to inform you that you have been offered a scholarship
-                    to join the tech program. Kindly click the link below to create your profile password.
+                    Dear <b>${user.firstName?.toUpperCase()}</b>! We have received your application to participate in the next cohort of ${user.programme?.toUpperCase()} organised by SAIL.
+                    The application process is still on and we shall get back to you very soon after shortlisting the applications that we feel meet the minimum criteria.
+
+                    Best regards,
+                    Management
                     
                     
                   </main>

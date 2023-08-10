@@ -10,8 +10,29 @@ const enrollParticipants = async (req, res)=>{
         firstName: Joi.string().min(3).required(),
         lastName: Joi.string().min(3).required(),
         email: Joi.string().email().required(),
-        phoneNumber: Joi.string().required()
-    })
+        phoneNumber: Joi.string().required(),
+        sex: Joi.string().required(),
+        dob: Joi.string().required(),
+        lga: Joi.string().required(),
+        homeAddress: Joi.string().required(),
+        programme: Joi.string().required(),
+        occupation: Joi.string().required(),
+        education: Joi.string().required(),
+        classOfDegree: Joi.string().required(),
+        instituitionAttended: Joi.string().required(),
+        yearOfGraduation: Joi.string().required(),
+        computerSkill: Joi.string().required(),
+        softwareUsed: Joi.string().required(),
+        softwareTraining: Joi.boolean(),
+        applicationYouWillBuild: Joi.string().required(),
+        techStack: Joi.string().required(),
+        preferredJob: Joi.string().required(),
+        workSector: Joi.string().required(),
+        reasonForScholarship: Joi.string().required(),
+        commitment: Joi.boolean(),
+    });
+    //Registering A User
+    // Checking if a user with an existing email is already registered
     const { error } = Schema.validate(req.body)
     if(error) return res.status(400).send({
         responseCode: "96",
@@ -19,13 +40,37 @@ const enrollParticipants = async (req, res)=>{
         data: null
     })
 
-    
-    const { firstName, lastName, email, phoneNumber } = req.body
+    const { 
+        firstName, 
+        lastName, 
+        email, 
+        phoneNumber,
+        sex,
+        dob,
+        lga,
+        homeAddress,
+        programme,
+        occupation,
+        education,
+        classOfDegree,
+        instituitionAttended,
+        yearOfGraduation,
+        computerSkill,
+        softwareUsed,
+        softwareTraining,
+        applicationYouWillBuild,
+        techStack,
+        preferredJob,
+        workSector,
+        reasonForScholarship,
+        commitment
+
+     } = req.body
     try {
         let user = await Users.findOne({email});
 
         if (user) return res.status(400).send({
-            responseCode: "86",
+            responseCode: "96",
             responseMessage: "email already exists",
             data: null
         })
@@ -35,13 +80,32 @@ const enrollParticipants = async (req, res)=>{
             lastName,
             email,
             phoneNumber,
+            sex,
+            dob,
+            lga,
+            homeAddress,
+            programme,
+            occupation,
+            education,
+            classOfDegree,
+            instituitionAttended,
+            yearOfGraduation,
+            computerSkill,
+            softwareUsed,
+            softwareTraining,
+            applicationYouWillBuild,
+            techStack,
+            preferredJob,
+            workSector,
+            reasonForScholarship,
+            commitment,
             isVerified: false,
             isDeactivated: false,
             isReactivated: false,
             dateCreated: new Date().toJSON(),
             dateUpdated: null,
             startDate: null,
-            endDate: null
+            endDate: null,
         })
     
         await user.save()
@@ -59,6 +123,6 @@ const enrollParticipants = async (req, res)=>{
         })
         console.log(error)
     }
-}
+};
 
 module.exports = enrollParticipants

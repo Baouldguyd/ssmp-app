@@ -9,8 +9,8 @@ const createMailTransorter = () => {
         },
         tls: {
             rejectUnauthorized: false
-        }
-    })
+        } 
+    }) 
     
     return transporter
 }

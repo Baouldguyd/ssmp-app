@@ -24,13 +24,88 @@ const usersSchema = new mongoose.Schema({
         type: String,
         required: "Phone number is required"
     },
-    lga: {
+    sex:{
         type: String,
-        minlength: 3,
+        required: "Phone number is required"
+    },
+    dob:{
+        type: String,
+        required: "Date of birth is required"
+    },
+    lga: {  
+        type: String,
+        required: "lga is required"
     },
     homeAddress: {
         type: String,
         minlength: 3,
+        required: "Home Address is required"
+    },
+    programme: {
+        type: String,
+        required: "Please fill this in"
+    },
+    occupation:{
+        type: String,
+        required: "Please fill this in"
+    },
+    education:{
+        type: String,
+        required: "Please fill this in"
+    },
+    classOfDegree:{
+        type: String,
+        required: "Please fill this in"
+    },
+    institutionAttended:{
+        type: String,
+        required: "Please fill this in"
+    },
+    yearOfGraduation:{
+        type: String,
+        required: "Please fill this in"
+    },
+    computerSkill:{
+        type: String,
+        required: "Please fill this in"
+    },
+    softwareUsed:{
+        type: String,
+        required: "Please fill this in"
+    },
+    softwareTraining:{
+        type: Boolean,
+        required: "Please fill this in"
+    },
+    applicationYouWillBuild:{
+        type: String,
+        required: "Please fill this in"
+    },
+    techStack:{
+        type: String,
+        required: "Please fill this in"
+    },
+   preferredJob:{
+        type: String,
+        required: "Please fill this in"
+    },
+   workSector:{
+        type: String,
+        required: "Please fill this in"
+    },
+   reasonForScholarship:{
+        type: String,
+        required: "Please fill this in"
+    },
+  commitment:{
+        type: Boolean,
+        required: "Please fill this in"
+    },
+    role: {
+        type: String,
+        required: "Role name is required",
+        enum: ['USER', 'ADMIN'],
+        default: "USER"
     },
     startDate: {
         type: String,
@@ -59,7 +134,7 @@ const usersSchema = new mongoose.Schema({
     dateUpdated: {
         type: String,
     },
-})
+});
 
 
 const Users = mongoose.model("users", usersSchema )
