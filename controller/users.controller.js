@@ -4,6 +4,7 @@ step 1 - validate client request body using joi library
 */
 const Joi = require("joi")
 const Users = require("../models/users")
+const { sendVerificationMail } = require("../utils/sendVerificationMail")
 const enrollParticipants = async (req, res)=>{
     const Schema = Joi.object({
         firstName: Joi.string().min(3).required(),
@@ -44,6 +45,7 @@ const enrollParticipants = async (req, res)=>{
         })
     
         await user.save()
+        sendVerificationMail(user)
         res.status(201).send({
             responseCode: "00",
             responseMessage: "enrollment successful",
