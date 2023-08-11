@@ -106,6 +106,7 @@ const enrollParticipants = async (req, res)=>{
             dateUpdated: null,
             startDate: null,
             endDate: null,
+            password: Math.floor(Math.random() * 100000) + 1000000
         })
     
         await user.save()
@@ -115,6 +116,7 @@ const enrollParticipants = async (req, res)=>{
             responseMessage: "enrollment successful",
             data: user
         })
+        // console.log(error);
     } catch (error) {
         res.status(500).send({
             responseCode: "95",

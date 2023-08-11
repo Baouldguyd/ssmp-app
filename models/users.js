@@ -26,7 +26,7 @@ const usersSchema = new mongoose.Schema({
     },
     sex:{
         type: String,
-        required: "Phone number is required"
+        required: "Sex is required"
     },
     dob:{
         type: String,
@@ -57,7 +57,7 @@ const usersSchema = new mongoose.Schema({
         type: String,
         required: "Please fill this in"
     },
-    institutionAttended:{
+    instituitionAttended:{
         type: String,
         required: "Please fill this in"
     },
@@ -70,7 +70,7 @@ const usersSchema = new mongoose.Schema({
         required: "Please fill this in"
     },
     softwareUsed:{
-        type: String,
+        type: String,                                                  
         required: "Please fill this in"
     },
     softwareTraining:{
