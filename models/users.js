@@ -45,6 +45,9 @@ const usersSchema = new mongoose.Schema({
         type: String,
         required: "Please fill this in"
     },
+    programmeId: {
+        type: Number,
+    },
     occupation:{
         type: String,
         required: "Please fill this in"

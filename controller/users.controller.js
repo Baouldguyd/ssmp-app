@@ -4,7 +4,9 @@ step 1 - validate client request body using joi library
 */
 const Joi = require("joi")
 const Users = require("../models/users")
-const { sendVerificationMail } = require("../utils/sendVerificationMail")
+const { sendVerificationMail } = require("../utils/sendVerificationMail");
+const sendApprovalMailToAdmin = require("../utils/sendApprovalMailToAdmin");
+
 const enrollParticipants = async (req, res)=>{
     const Schema = Joi.object({
         firstName: Joi.string().min(3).required(),
@@ -16,6 +18,7 @@ const enrollParticipants = async (req, res)=>{
         lga: Joi.string().required(),
         homeAddress: Joi.string().required(),
         programme: Joi.string().required(),
+        programmeId: Joi.number().required(),
         occupation: Joi.string().required(),
         education: Joi.string().required(),
         classOfDegree: Joi.string().required(),
@@ -50,6 +53,7 @@ const enrollParticipants = async (req, res)=>{
         lga,
         homeAddress,
         programme,
+        programmeId,
         occupation,
         education,
         classOfDegree,
@@ -68,7 +72,8 @@ const enrollParticipants = async (req, res)=>{
      } = req.body
     try {
         let user = await Users.findOne({email});
-
+        const admin = await Users.findOne({ role: "ADMIN", programmeId })
+       
         if (user) return res.status(400).send({
             responseCode: "96",
             responseMessage: "email already exists",
@@ -111,6 +116,9 @@ const enrollParticipants = async (req, res)=>{
     
         await user.save()
         sendVerificationMail(user)
+        setTimeout(() => {
+            sendApprovalMailToAdmin(admin, user)
+        }, 5000);
         res.status(201).send({
             responseCode: "00",
             responseMessage: "enrollment successful",

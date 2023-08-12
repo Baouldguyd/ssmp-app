@@ -1,5 +1,7 @@
 const joi = require("joi");
 const Users = require("../models/users");
+const bcrypt = require("bcrypt");
+const { createToken } = require("../utils/createToken");
 
 const login = async(req, res) => {
     const schema = joi.object({
@@ -21,6 +23,28 @@ try {
         responseMessage: "Invalid email or password",
         data: null
     });
+
+const validatePassword = await bcrypt.compare(
+      request.body.password,
+      user.password
+    );
+    if (!validatePassword)
+      return response.status(400).send({
+        responseCode: "96",
+        responseMessage: "Invalid email or password",
+        data: null,
+      });
+      if(!user.isVerified) return response.send({
+        responseCode: "96",
+        responseMessage: "Kindly verify your account to proceed",
+        data: {
+          _id: user._id,
+          email: user.email,
+          username: user.username,
+          isVerified: user.isVerified,
+          dateCreated: user.dateCreated,
+        },
+      });
     
 } catch (error) {
     res.status(500).send({

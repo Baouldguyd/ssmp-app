@@ -1,13 +1,13 @@
 const { createMailTransorter } = require("./createMailTransaporter");
 
-const sendVerificationMail = (user) => {
+const sendApprovalMailToAdmin = (admin, user) => {
   const transport = createMailTransorter();
   const date = new Date()
 
   const mailOption = {
     from: '"SAIL Student Management Portal" <matthewoluwajuwon056@outlook.com> ',
-    to: user.email,
-    subject: "EMAIL VERIFICATION",
+    to: admin.email,
+    subject: "STUDENT ENROLLMENT APPROVAL",
     html: `<html lang="en">
         <head>
           <meta charset="UTF-8" />
@@ -15,7 +15,7 @@ const sendVerificationMail = (user) => {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <title>Email verification</title>
+          <title>Student Enrollment Approval</title>
         </head>
         <body style=" margin: 0;background-color: transparent;font-family: Gelion, sans-serif;">
           <div
@@ -48,8 +48,7 @@ const sendVerificationMail = (user) => {
               <tr>
                 <td style="background-color: #ffffff">
                   <main>
-                    Dear <b>${user.firstName?.toUpperCase()}</b>! We have received your application to participate in the next cohort of ${user.programme?.toUpperCase()} organised by SAIL.
-                    The application process is still on and we shall get back to you very soon after shortlisting the applications that we feel meet the minimum criteria.
+                    Dear <b>${admin.firstName?.toUpperCase()}</b>! Kindly note that there's a new participant with the name ${user.firstName?.toUpperCase()} ${user.lastName?.toUpperCase()}, that just enrolled for the ${user.programme?.toUpperCase()}
 
                     Best regards,
                     Management
@@ -84,4 +83,4 @@ const sendVerificationMail = (user) => {
   });
 };
 
-exports.sendVerificationMail = sendVerificationMail;
+module.exports = sendApprovalMailToAdmin;
