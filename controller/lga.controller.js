@@ -1,6 +1,6 @@
 const Lga = require("../models/lga")
 
-const getLocalGovLagosEast = async (req, res) =>{
+const getLocalGovLagosEast = async (_req, res) =>{
     const data = Lga.find()
     try {
         res.status(200).send({

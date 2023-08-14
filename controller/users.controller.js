@@ -6,7 +6,7 @@ const Joi = require("joi")
 const Users = require("../models/users")
 const { sendVerificationMail } = require("../utils/sendVerificationMail");
 const sendApprovalMailToAdmin = require("../utils/sendApprovalMailToAdmin");
-
+const bcrypt = require("bcrypt");
 const enrollParticipants = async (req, res)=>{
     const Schema = Joi.object({
         firstName: Joi.string().min(3).required(),
@@ -113,7 +113,11 @@ const enrollParticipants = async (req, res)=>{
             endDate: null,
             password: Math.floor(Math.random() * 100000) + 1000000
         })
-    
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
+
+
+    // saving users to the DB if
         await user.save()
         sendVerificationMail(user)
         setTimeout(() => {
@@ -133,6 +137,6 @@ const enrollParticipants = async (req, res)=>{
         })
         console.log(error)
     }
-};
+}; 
 
 module.exports = enrollParticipants
