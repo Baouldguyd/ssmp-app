@@ -1,13 +1,13 @@
 const { createMailTransorter } = require("./createMailTransaporter");
 
-const sendVerificationMail = (user) => {
+const sendEnrollmentMail = (user) => {
   const transport = createMailTransorter();
   const date = new Date()
 
   const mailOption = {
     from: '"SAIL Student Management Portal" <matthewoluwajuwon056@outlook.com> ',
     to: user.email,
-    subject: "EMAIL VERIFICATION",
+    subject: " ENROLLMENT EMAIL",
     html: `<html lang="en">
         <head>
           <meta charset="UTF-8" />
@@ -15,7 +15,7 @@ const sendVerificationMail = (user) => {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <title>Email verification</title>
+          <title>Enrollment Email</title>
         </head>
         <body style=" margin: 0;background-color: transparent;font-family: Gelion, sans-serif;">
           <div
@@ -79,9 +79,9 @@ const sendVerificationMail = (user) => {
     if (error) {
       console.log(error);
     } else {
-      console.log("Email verification sent");
+      console.log("Enrollment mail sent");
     }
   });
 };
 
-exports.sendVerificationMail = sendVerificationMail;
+exports.sendEnrollmentMail = sendEnrollmentMail;

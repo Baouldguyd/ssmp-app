@@ -1,8 +1,8 @@
 const Lga = require("../models/lga")
 
 const getLocalGovLagosEast = async (_req, res) =>{
-    const data = Lga.find()
     try {
+        const data = await Lga.find({})
         res.status(200).send({
             responseCode: "00",
             responseMessage:"successful",

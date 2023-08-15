@@ -1,4 +1,5 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const { RoleType } = require("../utils/constant");
 
 
 const usersSchema = new mongoose.Schema({
@@ -107,8 +108,12 @@ const usersSchema = new mongoose.Schema({
     role: {
         type: String,
         required: "Role name is required",
-        enum: ['USER', 'ADMIN'],
-        default: "USER"
+        enum: [RoleType.USER, RoleType.ADMIN],
+        default: RoleType.USER
+    },
+    otp: {
+        type: Number,
+        minlength: 4
     },
     startDate: {
         type: String,
@@ -118,9 +123,15 @@ const usersSchema = new mongoose.Schema({
         type: String,
         minlength: 3,
     },
-    isVerified: {
+    isApproved: {
         type: Boolean,
         default: false
+    },
+    approvedBy: {
+        type: String,
+    },
+    approvedDate: {
+        type: String
     },
     isDeactivated: {
         type: Boolean,

@@ -46,7 +46,15 @@ const createCourse = async (req, res) => {
         updatedBy
     })
 
-
+        await course.save()
+        try {
+            res.status(200).send({
+                responseCode: "00",
+                responseMessage: " course creation sucessful",
+            })
+        } catch (error) {
+            
+        }
 
 
 

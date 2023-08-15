@@ -4,9 +4,10 @@ step 1 - validate client request body using joi library
 */
 const Joi = require("joi")
 const Users = require("../models/users")
-const { sendVerificationMail } = require("../utils/sendVerificationMail");
+const { sendEnrollmentMail } = require("../utils/sendEnrollmentMail");
 const sendApprovalMailToAdmin = require("../utils/sendApprovalMailToAdmin");
-const bcrypt = require("bcrypt");
+const { RoleType } = require("../utils/constant");
+
 const enrollParticipants = async (req, res)=>{
     const Schema = Joi.object({
         firstName: Joi.string().min(3).required(),
@@ -72,14 +73,14 @@ const enrollParticipants = async (req, res)=>{
      } = req.body
     try {
         let user = await Users.findOne({email});
-        const admin = await Users.findOne({ role: "ADMIN", programmeId })
-       
+        const admin = await Users.findOne({ role: RoleType.ADMIN, programmeId })
+      
         if (user) return res.status(400).send({
             responseCode: "96",
             responseMessage: "email already exists",
             data: null
         })
-        
+         
         user = new Users({
             firstName,
             lastName,
@@ -104,22 +105,23 @@ const enrollParticipants = async (req, res)=>{
             workSector,
             reasonForScholarship,
             commitment,
-            isVerified: false,
+            isApproved: false,
+            approvedBy: null,
+            approvedDate: null,
             isDeactivated: false,
             isReactivated: false,
             dateCreated: new Date().toJSON(),
             dateUpdated: null,
             startDate: null,
             endDate: null,
-            password: Math.floor(Math.random() * 100000) + 1000000
+            otp: null
         })
-        const salt = await bcrypt.genSalt(10);
-        user.password = await bcrypt.hash(user.password, salt);
+
 
 
     // saving users to the DB if
         await user.save()
-        sendVerificationMail(user)
+        sendEnrollmentMail(user)
         setTimeout(() => {
             sendApprovalMailToAdmin(admin, user)
         }, 5000);
