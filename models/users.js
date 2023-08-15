@@ -148,6 +148,17 @@ const usersSchema = new mongoose.Schema({
     dateUpdated: {
         type: String,
     },
+    clockInDate: {
+        type: String,
+        default: new Date().toJSON(),
+      },
+      clockOutDate: {
+        type: String,
+      },
+      clockInStatus: {
+        type: Boolean,
+        default: false,
+      },
 });
 
 

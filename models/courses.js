@@ -17,7 +17,7 @@ const courseSchema = new mongooes.Schema({
         type: String,
     },
     duration: {
-        type: String,
+        type: Number,
     },
     dateCreated: {
         type: String,
