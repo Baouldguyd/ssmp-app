@@ -123,7 +123,7 @@ const enrollParticipants = async (req, res)=>{
         setTimeout(() => {
             sendApprovalMailToAdmin(admin, user)
         }, 5000);
-        res.status(201).send({
+        res.status(200).send({
             responseCode: "00",
             responseMessage: "enrollment successful",
             data: user

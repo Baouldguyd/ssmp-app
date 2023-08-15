@@ -13,6 +13,7 @@ usersRouter.post("/enrollParticipants", enrollParticipants)
 usersRouter.post("/changePassword", password)
 usersRouter.post("/login", login)
 usersRouter.get("/lga", getLocalGovLagosEast)
+usersRouter.post("/course", )
 
 
 module.exports = usersRouter
