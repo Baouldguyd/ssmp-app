@@ -4,13 +4,13 @@ const createMailTransorter = () => {
     const transporter = nodemailer.createTransport({
         service: "hotmail",
         auth: {
-            user: "oyeoyindamola@outlook.com",
+            user: "matthewoluwajuwon056@outlook.com",
             pass: process.env.MAIL_PASSWORD
         },
         tls: {
             rejectUnauthorized: false
-        }
-    })
+        } 
+    }) 
     
     return transporter
 }

@@ -1,13 +1,13 @@
 const { createMailTransorter } = require("./createMailTransaporter");
 
-const sendVerificationMail = (user) => {
+const sendEnrollmentMail = (user) => {
   const transport = createMailTransorter();
   const date = new Date()
 
   const mailOption = {
-    from: "SAIL Student Management Portal",
+    from: '"SAIL Student Management Portal" <matthewoluwajuwon056@outlook.com> ',
     to: user.email,
-    subject: "EMAIL VERIFICATION",
+    subject: " ENROLLMENT EMAIL",
     html: `<html lang="en">
         <head>
           <meta charset="UTF-8" />
@@ -15,10 +15,9 @@ const sendVerificationMail = (user) => {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <link href="https://fonts.cdnfonts.com/css/gelion" rel="stylesheet" />
-          <title>Email verification</title>
+          <title>Enrollment Email</title>
         </head>
-        <body style=" margin: 0;background-color: transparent;ont-family: Gelion, sans-serif;">
+        <body style=" margin: 0;background-color: transparent;font-family: Gelion, sans-serif;">
           <div
             style="width: 100%;
           table-layout: fixed;
@@ -39,7 +38,6 @@ const sendVerificationMail = (user) => {
                   height="120"
                   style="
                   background-color: #171a1b;
-                  background-image: url('https://i.ibb.co/hYd7yWb/bg-image.png');
                   display: flex;
                   align-items: center;
                 "
@@ -50,8 +48,11 @@ const sendVerificationMail = (user) => {
               <tr>
                 <td style="background-color: #ffffff">
                   <main>
-                    Dear <b>${user.firstName?.toUpperCase()}</b>! Welcome to SAIL. We are pleased to inform you that you have been offered a scholarship
-                    to join the tech program. Kindly click the link below to create your profile password.
+                    Dear <b>${user.firstName?.toUpperCase()}</b>! We have received your application to participate in the next cohort of ${user.programme?.toUpperCase()} organised by SAIL.
+                    The application process is still on and we shall get back to you very soon after shortlisting the applications that we feel meet the minimum criteria.
+
+                    Best regards,
+                    Management
                     
                     
                   </main>
@@ -78,9 +79,9 @@ const sendVerificationMail = (user) => {
     if (error) {
       console.log(error);
     } else {
-      console.log("Email verification sent");
+      console.log("Enrollment mail sent");
     }
   });
 };
 
-exports.sendVerificationMail = sendVerificationMail;
+exports.sendEnrollmentMail = sendEnrollmentMail;
