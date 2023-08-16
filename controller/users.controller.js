@@ -114,7 +114,9 @@ const enrollParticipants = async (req, res)=>{
             dateUpdated: null,
             startDate: null,
             endDate: null,
-            otp: null
+            otp: null,
+            clockInDate:null,
+            clockInStatus:null,
         })
 
 
