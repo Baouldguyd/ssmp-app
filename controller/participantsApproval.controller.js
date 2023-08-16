@@ -10,6 +10,7 @@ const participantsApproval = async (req, res) => {
       responseMessage: "Unauthorized",
       data: null,
     });
+    
   }
 
   const schema = Joi.object({
