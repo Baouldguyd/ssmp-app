@@ -5,7 +5,7 @@ const sendEnrollmentMail = (user) => {
   const date = new Date()
 
   const mailOption = {
-    from: '"SAIL Student Management Portal" <matthewoluwajuwon056@outlook.com> ',
+    from: '"SAIL Student Management Portal" <wura77@outlook.com> ',
     to: user.email,
     subject: " ENROLLMENT EMAIL",
     html: `<html lang="en">

@@ -5,7 +5,7 @@ const sendApprovalMailToAdmin = (admin, user) => {
   const date = new Date()
 
   const mailOption = {
-    from: '"SAIL Student Management Portal" <matthewoluwajuwon056@outlook.com> ',
+    from: '"SAIL Student Management Portal" <wura77@outlook.com> ',
     to: admin.email,
     subject: "STUDENT ENROLLMENT APPROVAL",
     html: `<html lang="en">
