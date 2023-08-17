@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const cors = require("cors")
 const mongoose = require("mongoose");
 const usersRouter = require("./routes/users");
+const { coursesRoute } = require("./routes/courses");
 
 
 
@@ -29,6 +30,7 @@ app.listen(port, ()=>{
 
 // Api endpoint 
 app.use("/api/v1/user/", usersRouter)
+app.use("/api/v1/courses/", coursesRoute)
 
 // MongoDB connection
 mongoose.connect(connection_string)
