@@ -37,6 +37,5 @@ const deleteCourse = async (req, res) => {
     });
     console.log(error);
   }
-};
-
-module.exports = deleteCourse;
+}
+module.exports = deleteCourse
