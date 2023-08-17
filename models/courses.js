@@ -13,7 +13,7 @@ const courseSchema = new mongooes.Schema({
     description:{
         type: String
     },
-    learnigObjectives: {
+    learningObjectives: {
         type: String,
     },
     duration: {
@@ -21,6 +21,9 @@ const courseSchema = new mongooes.Schema({
     },
     dateCreated: {
         type: String,
+    },
+    createdBy: {
+        type: String
     },
     dateUpdated: {
         type: String,

@@ -5,7 +5,7 @@ const password = require("../controller/password.controller")
 const getLocalGovLagosEast = require("../controller/lga.controller")
 const participantsApproval = require("../controller/participantsApproval.controller")
 const auth = require("../middleware/auth")
-const createCourse = require("../controller/createCourse.controller")
+const { getUserProfileInfo } = require("../controller/getUserProfileInfo.controller")
 
 
 
@@ -17,7 +17,7 @@ usersRouter.post("/changePassword", password)
 usersRouter.post("/login", login)
 usersRouter.get("/lga", getLocalGovLagosEast)
 usersRouter.put("/approvePendingParticipants/:_id", auth, participantsApproval)
-usersRouter.post("/createCourse", createCourse)
+usersRouter.get("/getUserProfileInfo", auth, getUserProfileInfo)
 
 
 module.exports = usersRouter

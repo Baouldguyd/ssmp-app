@@ -69,7 +69,6 @@ const enrollParticipants = async (req, res)=>{
         workSector,
         reasonForScholarship,
         commitment
-
      } = req.body
     try {
         let user = await Users.findOne({email});
