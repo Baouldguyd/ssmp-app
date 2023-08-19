@@ -2,7 +2,7 @@ const joi = require("joi");
 const Users = require("../models/users");
 const bcrypt = require("bcrypt");
 const { createToken } = require("../utils/createToken");
-const { RoleType } = require("../utils/constant");
+const { RoleType, ApprovalStatus } = require("../utils/constant");
 
 const login = async (req, res) => {
   const schema = joi.object({
@@ -15,7 +15,7 @@ const login = async (req, res) => {
   if (error)
     return res.status(400).send({
       responseCode: "96",
-      responseMessage: error.details[0].message,
+      responseMessage: error.details[0].message?.replaceAll("\"", ""),
       data: null,
     });
   try {
@@ -37,7 +37,10 @@ const login = async (req, res) => {
         responseMessage: "Invalid email or password",
         data: null,
       });
-    if (!user.isApproved && user.role !== RoleType.ADMIN) return res.status(200).send({
+
+    
+
+    if (user.approvalStatus === ApprovalStatus.PENDING && user.role !== RoleType.ADMIN) return res.status(200).send({
         responseCode: "96",
         responseMessage: "Kindly verify your account to proceed",
         data: {
@@ -65,7 +68,7 @@ const login = async (req, res) => {
           workSector: user.workSector,
           reasonForScholarship: user.reasonForScholarship,
           commitment: user.commitment,
-          isApproved: user.isApproved,
+          approval: user.approval.ApprovalStatus.PENDING,
           approvedBy: user.approvedBy,
           approvedDate: user.approvedDate,
           isDeactivated: user.isDeactivated,

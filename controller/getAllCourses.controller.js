@@ -10,6 +10,7 @@ const getAllCourses = async(req, res) => {
                 data: null
             })
         }
+        
         res.status(200).send({
             responseCode: "00",
             responseMessage: "Courses fetched successfully",

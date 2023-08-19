@@ -16,6 +16,7 @@ const getUserProfileInfo = async (req, res) => {
       responseMessage: "User fetched successfully",
       data: {
         _id: user._id,
+        profileImage: user,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
