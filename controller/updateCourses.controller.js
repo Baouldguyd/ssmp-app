@@ -15,7 +15,7 @@ const updateCourse = async (req, res) => {
   if (error)
     return res.status(400).send({
       responseCode: "96",
-      responseMessage: error.details[0].message,
+      responseMessage: error.details[0].message?.replaceAll("\"", ""),
       data: null,
     });
 

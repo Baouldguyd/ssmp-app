@@ -6,7 +6,7 @@ const Joi = require("joi")
 const Users = require("../models/users")
 const { sendEnrollmentMail } = require("../utils/sendEnrollmentMail");
 const sendApprovalMailToAdmin = require("../utils/sendApprovalMailToAdmin");
-const { RoleType } = require("../utils/constant");
+const { RoleType, ApprovalStatus } = require("../utils/constant");
 
 const enrollParticipants = async (req, res)=>{
     const Schema = Joi.object({
@@ -104,7 +104,7 @@ const enrollParticipants = async (req, res)=>{
             workSector,
             reasonForScholarship,
             commitment,
-            isApproved: false,
+            approvalStatus: ApprovalStatus.PENDING,
             approvedBy: null,
             approvedDate: null,
             isDeactivated: false,
@@ -135,7 +135,7 @@ const enrollParticipants = async (req, res)=>{
     } catch (error) {
         res.status(500).send({
             responseCode: "95",
-            responseMessage:"internal server error",
+            responseMessage:"internal server error"?.replaceAll("\"", ""),
             data: null
         })
         console.log(error)

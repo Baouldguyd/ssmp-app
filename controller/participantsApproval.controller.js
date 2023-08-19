@@ -1,4 +1,4 @@
-const { RoleType } = require("../utils/constant");
+const { RoleType, ApprovalStatus } = require("../utils/constant");
 const Users = require("../models/users");
 const Joi = require("joi");
 const sendApprovalMailToParticipant = require("../utils/sendApprovalMailToParticipants");
@@ -10,11 +10,10 @@ const participantsApproval = async (req, res) => {
       responseMessage: "Unauthorized",
       data: null,
     });
-    
   }
 
   const schema = Joi.object({
-    approvalStatus: Joi.boolean().required(),
+    approvalStatus: Joi.string().required(),
     startDate: Joi.string().required(),
     endDate: Joi.string().required(),
   });
@@ -22,7 +21,7 @@ const participantsApproval = async (req, res) => {
   if (error)
     return res.status(400).send({
       responseCode: "96",
-      responseMessage: error.details[0].message,
+      responseMessage: error.details[0].message?.replaceAll('"', ""),
       data: null,
     });
 
@@ -36,7 +35,7 @@ const participantsApproval = async (req, res) => {
       });
     }
 
-    user.isApproved = req.body.approvalStatus;
+    user.approvalStatus = req.body.approvalStatus;
     user.approvedDate = new Date().toJSON();
     user.approvedBy = req.user.email;
     user.startDate = req.user.startDate;
@@ -45,12 +44,10 @@ const participantsApproval = async (req, res) => {
 
     await user.save();
 
-    if (user.isApproved) {
+    if (user.approvalStatus === ApprovalStatus.APPROVED) {
       res.status(200).send({
         responseCode: "00",
-        responseMessage: user.isApproved
-          ? "User approved successfully"
-          : "User disapproved successfully",
+        responseMessage: user.firstName + " approved successfully",
       });
       sendApprovalMailToParticipant(user);
     }

@@ -1,8 +1,13 @@
 const mongoose = require("mongoose");
-const { RoleType } = require("../utils/constant");
+const { RoleType, ApprovalStatus } = require("../utils/constant");
+
+
 
 
 const usersSchema = new mongoose.Schema({
+    profileImage: {
+        type: String,
+    },
     firstName: {
         type: String,
         minlength: 3,
@@ -123,9 +128,10 @@ const usersSchema = new mongoose.Schema({
         type: String,
         minlength: 3,
     },
-    isApproved: {
-        type: Boolean,
-        default: false
+    approvalStatus: {
+        type: String,
+        enum: [ApprovalStatus.PENDING, ApprovalStatus.APPROVED, ApprovalStatus.DISAPPROVED],
+        default: ApprovalStatus.PENDING
     },
     approvedBy: {
         type: String,
