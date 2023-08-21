@@ -74,7 +74,7 @@ const sendApprovalMailToParticipant = (user) => {
         </body>
       </html>`,
   };
-  transport.sendMail(mailOption, (error, info) => {
+  transport.sendMail(mailOption, (error, info) => {n
     if (error) {
       console.log(error);
     } else {
