@@ -1,3 +1,5 @@
+const Joi = require("joi");
+const bcrypt = require("bcrypt")
 const Users = require("../models/users");
 
 const resetPassword = async (req, res) =>{
