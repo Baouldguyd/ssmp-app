@@ -39,6 +39,7 @@ const updateEvent = async (req, res) => {
       });
     }
     event = Events({
+      _id: event._id,
       eventImage,
       eventName,
       speaker,

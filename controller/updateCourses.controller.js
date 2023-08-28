@@ -39,6 +39,7 @@ const updateCourse = async (req, res) => {
       });
     }
     course = Course({
+      _id: course._id,
       courseImage,
       title,
       description,
