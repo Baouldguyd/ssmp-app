@@ -1,13 +1,13 @@
 const { createMailTransorter } = require("./createMailTransaporter");
 
-const sendApprovalMailToParticipant = (user) => {
+const sendResetPasswordMail = (user) => {
   const transport = createMailTransorter();
   const date = new Date()
 
   const mailOption = {
     from: '"SAIL Student Management Portal" <wura77@outlook.com> ',
     to: user.email,
-    subject: "STUDENT ENROLLMENT APPROVAL",
+    subject: " RESET PASSWORD EMAIL",
     html: `<html lang="en">
         <head>
           <meta charset="UTF-8" />
@@ -15,7 +15,7 @@ const sendApprovalMailToParticipant = (user) => {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <title>Student Enrollment Approval</title>
+          <title>Reset Password Email</title>
         </head>
         <body style=" margin: 0;background-color: transparent;font-family: Gelion, sans-serif;">
           <div
@@ -48,8 +48,13 @@ const sendApprovalMailToParticipant = (user) => {
               <tr>
                 <td style="background-color: #ffffff">
                   <main>
-                    Dear <b>${user.firstName?.toUpperCase()}</b>! Kindly note that there's a new participant with the name ${user.otp}, that just enrolled for the 
-<button onclick() => {window.location.href = "https://fsdfsdfs.com/q=${user.email}"}>reset password</button>
+                    Hello! <b>${user.firstName?.toUpperCase()}</b>
+                      You are receiving this mail because we received a reset password request for your account.
+                      if you made this request, enter the below otp to confirm that you made the request.
+                      otp =${user.otp}
+
+                       If you did not request a password reset, no further action is required.
+
                     Best regards,
                     Management
                     
@@ -74,13 +79,13 @@ const sendApprovalMailToParticipant = (user) => {
         </body>
       </html>`,
   };
-  transport.sendMail(mailOption, (error, info) => {n
+  transport.sendMail(mailOption, (error, info) => {
     if (error) {
       console.log(error);
     } else {
-      console.log("Email verification sent");
+      console.log("Reset Password mail sent");
     }
   });
 };
 
-module.exports = sendApprovalMailToParticipant;
+exports.sendResetPasswordMail = sendResetPasswordMail;

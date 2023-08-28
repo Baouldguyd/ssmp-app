@@ -21,6 +21,7 @@ const courseSchema = new mongooes.Schema({
     },
     dateCreated: {
         type: String,
+        default: new Date().toJSON()
     },
     createdBy: {
         type: String

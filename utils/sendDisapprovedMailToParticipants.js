@@ -1,13 +1,13 @@
 const { createMailTransorter } = require("./createMailTransaporter");
 
-const sendApprovalMailToParticipant = (user) => {
+const sendDisapprovalMailToParticipant = (user) => {
   const transport = createMailTransorter();
   const date = new Date()
 
   const mailOption = {
     from: '"SAIL Student Management Portal" <wura77@outlook.com> ',
     to: user.email,
-    subject: "STUDENT ENROLLMENT APPROVAL",
+    subject: "STUDENT ENROLLMENT DISAPPROVAL",
     html: `<html lang="en">
         <head>
           <meta charset="UTF-8" />
@@ -15,7 +15,7 @@ const sendApprovalMailToParticipant = (user) => {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <title>Student Enrollment Approval</title>
+          <title>Student Enrollment Disapproval</title>
         </head>
         <body style=" margin: 0;background-color: transparent;font-family: Gelion, sans-serif;">
           <div
@@ -48,11 +48,12 @@ const sendApprovalMailToParticipant = (user) => {
               <tr>
                 <td style="background-color: #ffffff">
                   <main>
-                    Dear <b>${user.firstName?.toUpperCase()}</b>! Kindly note that there's a new participant with the name ${user.otp}, that just enrolled for the 
-<button onclick() => {window.location.href = "https://fsdfsdfs.com/q=${user.email}"}>reset password</button>
+                    Dear <b>${user.firstName?.toUpperCase()}</b>! Thank you for applying for the Tech-Talent scholarship program cohort3. 
+                    We regret to inform you that you were not approved for this program as you did not meet all the specified requirements 
+                    for the program.
+                    Thank you again for your interest.
                     Best regards,
                     Management
-                    
                     
                   </main>
                 </td>
@@ -83,4 +84,4 @@ const sendApprovalMailToParticipant = (user) => {
   });
 };
 
-module.exports = sendApprovalMailToParticipant;
+module.exports = sendDisapprovalMailToParticipant;

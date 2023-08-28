@@ -86,7 +86,8 @@ const login = async (req, res) => {
       responseCode: "00",
       responseMessage: "Login successful",
       data: {
-        token,
+        role:user.role,
+        token
       },
     });
   } catch (error) {
