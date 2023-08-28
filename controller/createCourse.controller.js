@@ -43,6 +43,7 @@ const createCourse = async (req, res) => {
       });
 
     course = new Course({
+      _id: course._id,
       courseImage,
       title,
       description,
