@@ -1,5 +1,5 @@
 const Users = require("../models/users");
-const { sendResetPasswordMail } = require("../utils/sendresetPasswordMail");
+const sendResetPasswordMail = require("../utils/sendResetPasswordMail");
 
 
 const forgotPassword = async (req, res) => {
@@ -22,10 +22,10 @@ const forgotPassword = async (req, res) => {
             res.status(200).send({
                 responseCode: "00",
                 responseMessage: `Dear <b>${user.firstName?.toUpperCase()}</b>! 
-                A link has been sent to ${user.email}. Click the link to reset your password `
+               A mail has been sent to ${user.email}. Check to reset your password `
              });
             
-             sendResetPasswordMail(user)
+            sendResetPasswordMail(user)
         }
         } catch (error) {
             res.status(500).send({

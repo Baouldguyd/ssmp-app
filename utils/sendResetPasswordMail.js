@@ -88,4 +88,4 @@ const sendResetPasswordMail = (user) => {
   });
 };
 
-exports.sendResetPasswordMail = sendResetPasswordMail;
+module.exports = sendResetPasswordMail;
