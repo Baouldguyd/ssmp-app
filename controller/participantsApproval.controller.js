@@ -2,6 +2,7 @@ const { RoleType, ApprovalStatus } = require("../utils/constant");
 const Users = require("../models/users");
 const Joi = require("joi");
 const sendApprovalMailToParticipant = require("../utils/sendApprovalMailToParticipants");
+const sendDisapprovalMailToParticipant = require("../utils/sendDisapprovedMailToParticipants");
 
 const participantsApproval = async (req, res) => {
   if (req.user.role !== RoleType.ADMIN) {
@@ -50,6 +51,13 @@ const participantsApproval = async (req, res) => {
         responseMessage: user.firstName + " approved successfully",
       });
       sendApprovalMailToParticipant(user);
+    }
+    if(user.approvalStatus === ApprovalStatus.DISAPPROVED) {
+      res.status(200).send({
+        responseCode: "00",
+        responseMessage: user.firstName + " disapproved successfully"
+      });
+      sendDisapprovalMailToParticipant(user);
     }
   } catch (error) {
     res.status(500).send({

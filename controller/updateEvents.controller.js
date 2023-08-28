@@ -30,7 +30,7 @@ const updateEvent = async (req, res) => {
   try {
     const { eventImage, eventName, speaker, eventDescription, eventDate } =
       req.body;
-    let event = await Events.findByIdAndUpdate({ _id: req.params._id });
+    let event = await Events.findByIdAndUpdate({ _id: req.params._id});
     if (!event) {
       return res.status(400).send({
         responseCode: "96",

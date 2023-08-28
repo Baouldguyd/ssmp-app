@@ -1,4 +1,4 @@
-const Joi = require("joi");
+// const Joi = require("joi");
 const { RoleType } = require("../utils/constant");
 const Events = require("../models/events");
 
