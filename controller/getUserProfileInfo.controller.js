@@ -40,7 +40,7 @@ const getUserProfileInfo = async (req, res) => {
         workSector: user.workSector,
         reasonForScholarship: user.reasonForScholarship,
         commitment: user.commitment,
-        isApproved: user.isApproved,
+        approvalStatus: user.approvalStatus,
         approvedBy: user.approvedBy,
         approvedDate: user.approvedDate,
         isDeactivated: user.isDeactivated,

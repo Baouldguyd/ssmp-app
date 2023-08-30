@@ -8,7 +8,8 @@ const updateEvent = async (req, res) => {
     eventImage: Joi.string().required(),
     eventName: Joi.string().required(),
     speaker: Joi.string().required(),
-    eventDescription: Joi.string().required()
+    eventDescription: Joi.string().required(),
+    eventUrl: Joi.string().required()
   });
 
   const { error } = schema.validate(req.body);
@@ -28,7 +29,7 @@ const updateEvent = async (req, res) => {
   }
 
   try {
-    const { eventImage, eventName, speaker, eventDescription, eventDate } =
+    const { eventImage, eventName, speaker, eventDescription, eventUrl, eventDate } =
       req.body;
     let event = await Events.findByIdAndUpdate({ _id: req.params._id});
     if (!event) {
@@ -44,6 +45,7 @@ const updateEvent = async (req, res) => {
       eventName,
       speaker,
       eventDescription,
+      eventUrl,
       eventDate,
       dateCreated: new Date().toJSON(),
       createdBy: req.user.email,

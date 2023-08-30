@@ -6,7 +6,8 @@ const usersRouter = require("./routes/users");
 const { coursesRoute } = require("./routes/courses");
 const eventsRoute = require("./routes/events");
 const swaggerUI = require("swagger-ui-express")
-const swaggerJsDoc = require("swagger-jsdoc")
+const swaggerJsDoc = require("swagger-jsdoc");
+const { tasksRoute } = require("./routes/tasks");
 
 const app = express();
 dotenv.config();
@@ -54,6 +55,7 @@ app.listen(port, () => {
 app.use("/api/v1/user/", usersRouter);
 app.use("/api/v1/courses/", coursesRoute);
 app.use("/api/v1/events/", eventsRoute);
+app.use("/api/v1/tasks/", tasksRoute)
 // MongoDB connection
 mongoose
   .connect(connection_string)

@@ -16,6 +16,9 @@ const eventSchema = new mongoose.Schema({
     eventDescription: {
         type: String,
     },
+    eventUrl:{
+        type: String
+    },
     dateCreated: {
         type: String,
         default: new Date().toJSON()

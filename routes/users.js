@@ -9,6 +9,8 @@ const { getUserProfileInfo } = require("../controller/getUserProfileInfo.control
 const uploadProfileImage = require("../controller/uploadProfileImage.controller")
 const forgotPassword = require("../controller/forgotPassword.controller")
 const resetPassword = require("../controller/resetPassword.controller")
+const getAllParticipants = require("../controller/getAllParticipants.controller")
+const getAllUsers = require("../controller/getAllUsers")
 
 
 
@@ -24,6 +26,8 @@ usersRouter.post("/resetPassword", resetPassword)
 usersRouter.get("/lga", getLocalGovLagosEast)
 usersRouter.put("/approvePendingParticipants/:_id", auth, participantsApproval)
 usersRouter.get("/getUserProfileInfo", auth, getUserProfileInfo)
+usersRouter.get("/getAllUsers", auth, getAllUsers)
+usersRouter.get("/getAllParticipants", auth, getAllParticipants)
 usersRouter.put("/uploadProfileImage/:_id", auth, uploadProfileImage )
 
 
