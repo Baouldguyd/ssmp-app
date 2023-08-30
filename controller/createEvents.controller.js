@@ -8,7 +8,8 @@ const eventCreation = async (req, res) => {
             eventImage: Joi.string().required(),
             eventName: Joi.string().required(),
             speaker: Joi.string().required(),
-            eventDescription: Joi.string().required()
+            eventDescription: Joi.string().required(),
+            eventUrl: Joi.string().required()
           });
         
           const { error } = schema.validate(req.body);
@@ -26,7 +27,7 @@ const eventCreation = async (req, res) => {
               data: null,
             });
           }
-          const { eventImage, eventName, speaker, eventDate, eventDescription } =
+          const { eventImage, eventName, speaker, eventDate, eventDescription, eventUrl } =
             req.body;
         
           try {
@@ -45,6 +46,7 @@ const eventCreation = async (req, res) => {
               speaker,
               eventDate,
               eventDescription,
+              eventUrl,
               dateCreated: new Date().toJSON(),
               createdBy: req.user.email,
               dateUpdated: null,
