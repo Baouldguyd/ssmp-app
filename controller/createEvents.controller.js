@@ -8,7 +8,8 @@ const eventCreation = async (req, res) => {
             eventName: Joi.string().required(),
             speaker: Joi.string(),
             eventDescription: Joi.string().required(),
-            eventUrl: Joi.string().required()
+            eventUrl: Joi.string().required(),
+            eventDate: Joi.string().required()
           });
         
           const { error } = schema.validate(req.body);
