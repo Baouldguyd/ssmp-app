@@ -1,7 +1,7 @@
 const Users = require("../models/users");
-const { RoleType } = require("../utils/constant");
+const { RoleType, ApprovalStatus } = require("../utils/constant");
 
-const getAllUsers = async(req, res) => {
+const getAllApprovedParticipants = async(req, res) => {
     if (req.user.role !== RoleType.ADMIN) {
         return res.status(401).send({
           responseCode: "80",
@@ -21,12 +21,13 @@ const getAllUsers = async(req, res) => {
         
         res.status(200).send({
             responseCode: "00",
-            responseMessage: " Total User fetched successfully",
+            responseMessage: " Total Approved Participants fetched successfully",
             data: {
                 totalParticipants:
                   Array.isArray(user) &&
                   user.filter((item) => {
-                    return item.role !== RoleType.ADMIN;
+                    return item.role !== RoleType.ADMIN  &&
+                    item.approvalStatus == ApprovalStatus.APPROVED
                   })}
         })
     } catch (error) {
@@ -39,4 +40,4 @@ const getAllUsers = async(req, res) => {
     }
 }
 
-module.exports = getAllUsers
+module.exports = getAllApprovedParticipants

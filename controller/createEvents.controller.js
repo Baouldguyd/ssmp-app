@@ -5,11 +5,11 @@ const { RoleType } = require("../utils/constant");
 
 const eventCreation = async (req, res) => {
         const schema = Joi.object({
-            eventImage: Joi.string().required(),
             eventName: Joi.string().required(),
-            speaker: Joi.string().required(),
+            speaker: Joi.string(),
             eventDescription: Joi.string().required(),
-            eventUrl: Joi.string().required()
+            eventUrl: Joi.string().required(),
+            eventDate: Joi.string().required()
           });
         
           const { error } = schema.validate(req.body);
@@ -27,7 +27,7 @@ const eventCreation = async (req, res) => {
               data: null,
             });
           }
-          const { eventImage, eventName, speaker, eventDate, eventDescription, eventUrl } =
+          const { eventName, speaker, eventDate, eventDescription, eventUrl } =
             req.body;
         
           try {
@@ -41,7 +41,6 @@ const eventCreation = async (req, res) => {
               });
         
             event = new Events({
-              eventImage,
               eventName,
               speaker,
               eventDate,

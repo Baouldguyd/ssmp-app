@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const { TaskStatus } = require("../utils/constant")
 
 const tasksSchema = new mongoose.Schema({
     course:{
@@ -23,7 +24,9 @@ const tasksSchema = new mongoose.Schema({
         default: new Date().toJSON()
     },
     taskStatus: {
-        type: String
+        type: String,
+        enum: [TaskStatus.NOTSUBMITTEDUBMITTED, TaskStatus.SUBMITTED],
+        default: TaskStatus.NOTSUBMITTED
     },
     deadline:{
         type: String

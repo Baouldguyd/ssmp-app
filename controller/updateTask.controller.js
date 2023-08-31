@@ -39,7 +39,6 @@ const updateTask = async (req, res) => {
       });
     }
     task = Tasks({
-      // _id: task._id,
       course,
       taskTitle,
       taskPoints,

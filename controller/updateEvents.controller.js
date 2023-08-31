@@ -5,7 +5,6 @@ const Events = require("../models/events");
 
 const updateEvent = async (req, res) => {
   const schema = Joi.object({
-    eventImage: Joi.string().required(),
     eventName: Joi.string().required(),
     speaker: Joi.string().required(),
     eventDescription: Joi.string().required(),
@@ -29,7 +28,7 @@ const updateEvent = async (req, res) => {
   }
 
   try {
-    const { eventImage, eventName, speaker, eventDescription, eventUrl, eventDate } =
+    const { eventName, speaker, eventDescription, eventUrl, eventDate } =
       req.body;
     let event = await Events.findByIdAndUpdate({ _id: req.params._id});
     if (!event) {
@@ -40,8 +39,6 @@ const updateEvent = async (req, res) => {
       });
     }
     event = Events({
-      _id: event._id,
-      eventImage,
       eventName,
       speaker,
       eventDescription,
