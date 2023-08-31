@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 
 const eventSchema = new mongoose.Schema({
-    eventImage: {
-        type : String
-    },
     eventName: {
         type : String
     },

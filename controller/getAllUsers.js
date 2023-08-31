@@ -14,7 +14,7 @@ const getAllUsers = async(req, res) => {
         
         res.status(200).send({
             responseCode: "00",
-            responseMessage: "User fetched successfully",
+            responseMessage: " Total User fetched successfully",
             data: {
                 totalParticipants:
                   Array.isArray(user) &&
