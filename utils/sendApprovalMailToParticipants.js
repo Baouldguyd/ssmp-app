@@ -48,8 +48,17 @@ const sendApprovalMailToParticipant = (user) => {
               <tr>
                 <td style="background-color: #ffffff">
                   <main>
-                    Dear <b>${user.firstName?.toUpperCase()}</b>! Kindly note that there's a new participant with the name ${user.otp}, that just enrolled for the 
-<button onclick() => {window.location.href = "https://fsdfsdfs.com/q=${user.email}"}>reset password</button>
+                  Dear <b>${user.firstName?.toUpperCase()}</b>! We are thrilled to inform you that your application to the ${user.programme} 
+                  has been approved! Congratulations on this remarkable achievement and welcome to our esteemed community of tech enthusiasts 
+                  and innovators. We are excited to have you join us and embark on this exciting journey of learning, discovery, and growth.
+
+                  To begin your adventure with us, kindly click the link below to set up your account and create your password using this OTP- ${user.otp}.
+                  https://sail-student-dashboard.vercel.app
+
+
+                  Once again, congratulations on your acceptance! We are looking forward to seeing you thrive and excel in the
+                  ${user.programme}. Your presence will undoubtedly enrich our community and contribute to its success.
+        
                     Best regards,
                     Management
                     

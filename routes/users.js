@@ -12,6 +12,7 @@ const resetPassword = require("../controller/resetPassword.controller")
 const getAllParticipants = require("../controller/getAllParticipants.controller")
 const getAllUsers = require("../controller/getAllUsers")
 const getAllApprovedParticipants = require("../controller/getAllApprovedParticipants.controller")
+const getAllDisapprovedParticipants = require("../controller/getAllDisapprovedParticipants.controller")
 
 
 
@@ -30,6 +31,7 @@ usersRouter.get("/getUserProfileInfo", auth, getUserProfileInfo)
 usersRouter.get("/getAllUsers", auth, getAllUsers)
 usersRouter.get("/getAllParticipants", auth, getAllParticipants)
 usersRouter.get("/getAllApprovedParticipants", auth, getAllApprovedParticipants)
+usersRouter.get("/getAllDisapprovedParticipants", auth, getAllDisapprovedParticipants)
 usersRouter.put("/uploadProfileImage/:_id", auth, uploadProfileImage )
 
 
