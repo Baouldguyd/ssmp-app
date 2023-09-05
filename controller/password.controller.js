@@ -21,7 +21,6 @@ const password = async (req, res) => {
 
   try {
     const user = await Users.findOne({ email, otp });
-
     if (!user)
       return res.status(400).send({
         responseCode: "96",
@@ -33,6 +32,7 @@ const password = async (req, res) => {
     user.password = await bcrypt.hash(password, salt);
 
     await user.save();
+    await admin.save();
     res.status(200).send({
         responseCode: "00",
         responseMessage: "Password changed succesfully",
