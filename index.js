@@ -9,7 +9,7 @@ const { tasksRoute } = require("./routes/tasks");
 
 const app = express();
 dotenv.config();
-app.use(cors());
+app.use(cors());  
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

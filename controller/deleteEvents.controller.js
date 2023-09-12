@@ -10,7 +10,7 @@ const deleteEvent = async (req, res) => {
       responseMessage: "Unauthorized",
       data: null,
     });
-  }
+ }
 
   try {
     const event = await Events.findByIdAndDelete({ _id: req.params._id });
