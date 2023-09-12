@@ -7,7 +7,6 @@ const { RoleType } = require("../utils/constant");
 
 const createCourse = async (req, res) => {
   const schema = joi.object({
-    courseImage: joi.string().required(),
     title: joi.string().required(),
     description: joi.string().required(),
     learningObjectives: joi.string().required(),
@@ -29,7 +28,7 @@ const createCourse = async (req, res) => {
       data: null,
     });
   }
-  const { courseImage, title, description, learningObjectives, duration } =
+  const { title, description, learningObjectives, duration } =
     req.body;
 
   try {
@@ -44,7 +43,6 @@ const createCourse = async (req, res) => {
 
     course = new Course({
       _id: course._id,
-      courseImage,
       title,
       description,
       learningObjectives,
