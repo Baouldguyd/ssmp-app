@@ -42,7 +42,6 @@ const createCourse = async (req, res) => {
       });
 
     course = new Course({
-      _id: course._id,
       title,
       description,
       learningObjectives,
