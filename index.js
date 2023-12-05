@@ -6,6 +6,7 @@ const usersRouter = require("./routes/users");
 const { coursesRoute } = require("./routes/courses");
 const eventsRoute = require("./routes/events");
 const { tasksRoute } = require("./routes/tasks");
+const visitRoute = require("./routes/visit");
 
 const app = express();
 dotenv.config();
@@ -34,6 +35,8 @@ app.use("/api/v1/user/", usersRouter);
 app.use("/api/v1/courses/", coursesRoute);
 app.use("/api/v1/events/", eventsRoute);
 app.use("/api/v1/tasks/", tasksRoute)
+app.use("/api/v1/visit/", visitRoute)
+
 // MongoDB connection
 mongoose
   .connect(connection_string)
