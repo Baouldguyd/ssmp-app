@@ -1,5 +1,5 @@
 const Joi = require("joi")
-
+const Visitors = require("../models/visit")
 
 const visitRequest = async (req, res)=>{
     const Schema = Joi.object({
