@@ -49,11 +49,11 @@ const visitRequest = async (req, res)=>{
         })
 
         await visitor.save()
-        res.status(200).send({
-            responseCode: "00",
-            responseMessage: " Invitation Request Successful",
-            data: visitor
-        })
+        const response = {
+            'message': "Vistor's information received successfully",
+            'user': {visitor} // Echo back the received user data
+        };
+        res.status(200).json(response);
     } catch (error) {
         res.status(500).send({
             responseCode: "95",
