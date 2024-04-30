@@ -32,7 +32,7 @@ const getVisitorqrCode = async(req, res) => {
     res.status(200).send({
       responseCode: "00",
       responseMessage: "Successful",
-      data: qrCode
+      image: qrCode
   })
   }catch (error) {
     res.status(500).send({
