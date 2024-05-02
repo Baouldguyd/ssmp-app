@@ -1,5 +1,6 @@
 const Joi = require("joi")
 const Visitors = require("../models/visit")
+const QRCode = require("qrcode");
 
 const visitRequest = async (req, res)=>{
     const Schema = Joi.object({
@@ -49,9 +50,14 @@ const visitRequest = async (req, res)=>{
         })
 
         await visitor.save()
+          // Prepare user data for the QR code
+    const visitorData = `firstName: ${firstName}\nlastName: ${lastName}\nEmail: ${email}\nphoneNumber: ${phoneNumber}\naddress: ${address}\nreasonForVisit: ${reasonForVisit}\nsex:${sex}`;
+
+        const qrCode = await QRCode.toDataURL(visitorData);
         const response = {
             'message': "Vistor's information received successfully",
-            'user': {visitor} // Echo back the received user data
+            'user': {visitor}, // Echo back the received user data
+            'qrCode':qrCode
         };
         res.status(200).json(response);
     } catch (error) {
